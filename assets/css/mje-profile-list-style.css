@@ -1,0 +1,102 @@
+.custom-profile-list-wrapper
+{
+    padding:50px;
+}
+.profile-card-header
+{
+    height:80px;
+    background-color: #10A2F6;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    position:relative;
+}
+.profile-cover-image
+{
+    position: absolute;  
+    width: 90px;
+    height: 90px;     
+    transform: translate(-50%, -50%);
+    left:50%;
+    bottom:-85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  
+}
+.profile-cover-image img
+{
+    width:100%;
+    height: 100%;
+    border-radius:50%;   
+    border:3px solid #ffffff;
+}
+.profile-card-body
+{    
+    padding-top:50px;
+    padding-bottom:20px;
+    border:1px solid #d3d3d3;
+    border-top:0 !important;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+    box-shadow: 2px 5px 43px rgba(188, 207, 219, 0.65);
+}
+.profile-display-name
+{
+    font-size:18px;
+    font-weight: 600;      
+}
+.profile-card-reviewsNum
+{
+    margin-top: 5px;
+    font-size:12px;
+}
+.profile-location-language
+{
+    display: flex;
+    flex-direction: row !important;
+    margin-top:15px;
+    justify-content: space-between !important;  
+    font-size:14px;  
+    color:#90969b;
+}
+.profile-location-language p i
+{
+    margin-right:3px;
+}
+.custom-profile-location
+{
+    margin-right: 20px !important;
+}
+.profile-bio-description
+{
+    margin-top:15px;
+    font-size:14px;
+    font-style: italic;
+    color:#413b3b;
+    padding:0px 20px;
+    text-align: justify;
+   /* height:100px;
+    overflow-y: hidden; */
+    height:5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+}
+.custom-profile-view-btn
+{   
+    padding:10px 15px;
+    font-size:14px;
+    color:#ffffff !important;
+    background-color:#10A2F6;
+    border-radius: 45px;
+}
+.custom-profile-view-btn a
+{
+    color:#ffffff !important;
+}
