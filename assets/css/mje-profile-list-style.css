@@ -1,8 +1,17 @@
+.mje-list-top-wrapper
+{
+    background-color: #ffffff;
+    padding-bottom:25px;
+}
 .custom-profile-list-wrapper
 {
-    padding:50px;
+    
 }
-.profile-card-header
+.listprofileSwiper
+{
+    padding-bottom:10px;
+}
+ .profile-card-header
 {
     height:80px;
     background-color: #10A2F6;
@@ -10,7 +19,7 @@
     border-top-left-radius: 10px;
     position:relative;
 }
-.profile-cover-image
+ .profile-cover-image
 {
     position: absolute;  
     width: 90px;
@@ -21,7 +30,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 500;
   
 }
 .profile-cover-image img
@@ -31,7 +40,7 @@
     border-radius:50%;   
     border:3px solid #ffffff;
 }
-.profile-card-body
+ .profile-card-body
 {    
     padding-top:50px;
     padding-bottom:20px;
@@ -43,14 +52,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;    
-    box-shadow: 2px 5px 43px rgba(188, 207, 219, 0.65);
+   box-shadow: 0px 4px 8px rgba(188, 207, 219, 0.65);
 }
-.profile-display-name
+ .profile-display-name
 {
     font-size:18px;
     font-weight: 600;      
 }
-.profile-card-reviewsNum
+ .profile-card-reviewsNum
 {
     margin-top: 5px;
     font-size:12px;
@@ -74,7 +83,8 @@
 }
 .profile-bio-description
 {
-    margin-top:15px;
+    margin-top:5px;
+    margin-bottom: 5px;
     font-size:14px;
     font-style: italic;
     color:#413b3b;
@@ -82,7 +92,7 @@
     text-align: justify;
    /* height:100px;
     overflow-y: hidden; */
-    height:5em;
+    height:4.5em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4; /* Number of lines to show */
@@ -100,3 +110,76 @@
 {
     color:#ffffff !important;
 }
+.custom-profile-title
+{
+    margin-bottom:20px !important;
+    text-align: center !important;    
+}
+.mje-profile-previous-icon
+{
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:40%;
+    left:0px;
+    z-index: 900;
+}
+
+.mje-profile-next-icon
+{
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:40%;
+    right:0px;
+    z-index: 900;
+}
+.mje-next-area
+{
+    cursor:pointer;
+    width:50px;
+    height:110px;
+    position:absolute;
+    top:40%;
+    right:0px;
+    z-index: 800;
+    background-color:rgba(117, 189, 80, 0.5);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius:8px;
+    border-bottom-left-radius:8px;
+}
+.mje-next-area i
+{
+    font-size:20px !important;
+    color:#ffffff;
+}
+
+.mje-prev-area
+{
+    cursor:pointer;
+    width:50px;
+    height:110px;
+    position:absolute;
+    top:40%;
+    left:0px;
+    z-index: 800;
+    background-color:rgba(117, 189, 80, 0.5);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius:8px;
+    border-bottom-right-radius:8px;
+}
+
+.mje-prev-area i
+{
+    font-size:20px !important;
+    color:#ffffff;
+}
+
