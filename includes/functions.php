@@ -6,7 +6,7 @@ add_shortcode('custom_profile_carousel_slider', 'custom_profile_carousel_slider_
 function custom_profile_carousel_slider_function()
 {
     ob_start();    
-    $mje_profile_list=get_profiles_by_custom_conditions();
+    $mje_profile_list=get_profiles_by_custom_conditions();    
     $mjeprofile_settings=get_mjeprofile_settings();
     ?>
     <div class="mje-list-top-wrapper">
@@ -27,7 +27,7 @@ function custom_profile_carousel_slider_function()
                         <div class="profile-card-body">
                             <p class="profile-display-name">
                                 <?php echo $mje_profile->display_name; ?>
-                            </p>
+                            </p>                            
                             <div class="profile-card-rating" data-custom-rate="<?php echo $mje_profile->rating_score ?>"></div>
                             <div class="profile-card-reviewsNum"> <?php echo $mje_profile->review_text; ?> </div>
                             <div class="profile-location-language">
@@ -83,10 +83,15 @@ function get_profiles_by_custom_conditions()
 {
     global $post;
     $mjeprofile_settings=get_mjeprofile_settings();
+    
     $number_of_profiles=$mjeprofile_settings['number_profiles'];
+    
+    $sort_by=$mjeprofile_settings['sort_by'];
+    
+    $order=$mjeprofile_settings['order'];
 
 
-    //handle data by condition later ( using switch case)
+    
     $args=array('post_type' => 'mjob_profile',
                 'posts_per_page' =>  $number_of_profiles,   
                 'order'=> 'DESC',
@@ -104,6 +109,30 @@ function get_profiles_by_custom_conditions()
         }        
     }
     wp_reset_postdata();     
+    if($sort_by=='highrating')
+    {
+        if($order=='asc')
+        {
+            usort($mje_profile_list,'compareRatingScoreASC');
+        }
+        if($order=='desc')
+        {
+            usort($mje_profile_list,'compareRatingScoreDESC');
+        }
+        
+    }
+    if($sort_by=='nummjob')    
+    {
+        if($order=='asc')
+        {
+            usort($mje_profile_list,'compareNumberMjobASC');
+        }
+        if($order=='desc')
+        {
+            usort($mje_profile_list,'compareNumberMjobDESC');
+        }
+       
+    }
     return $mje_profile_list;
 }
 
@@ -175,6 +204,7 @@ function convert_profile_for_display($profile)
     $converted_profile['language']=$language_term_text;
     $converted_profile['profile_link']=$profile_link;
     $converted_profile['profile_button_label']=$mjeprofile_settings['view_profile_text'];
+    $converted_profile['number_of_mjobs']=$number_of_reiews['all_mjobs_count'];
 
     return (object)$converted_profile;
     
@@ -219,6 +249,9 @@ function get_mjeprofile_settings()
                     'viewprofile_btn_text_color' =>carbon_get_theme_option('mje_profile_slide_view_profile_text_color'),
                     'rating_star_color' =>carbon_get_theme_option('mje_profile_rate_star_color'),
                     'container_slider_bg_color' =>carbon_get_theme_option('mje_profile_slide_wrappger_bg_color'),
+                    'navigation_bg_color' =>carbon_get_theme_option('mje_profile_slide_navigation_bg_color'),
+                    'navigation_text_color' =>carbon_get_theme_option('mje_profile_slide_navigation_text_color'),
+                    'navigation_opacity' =>carbon_get_theme_option('mje_profile_slide_navigation_opacity') ,
                    
                     //translation
                     'slider_title'=>carbon_get_theme_option('mje_profile_list_title'),
@@ -239,6 +272,7 @@ function get_mjeprofile_settings()
                     'carousel_delay'=>carbon_get_theme_option('mje_profile_delay_autoplay') ? carbon_get_theme_option('mje_profile_delay_autoplay') : 1000,
                     'carousel_loop'=>carbon_get_theme_option('mje_profile_loop') ? carbon_get_theme_option('mje_profile_loop') : 'true' ,
                     'carousel_navigation_style' =>carbon_get_theme_option('mje_profile_carousel_navigation_style') ? carbon_get_theme_option('mje_profile_carousel_navigation_style') : 'classic',
+                    'freeMode' =>carbon_get_theme_option('mje_profile_carousel_freemode') ? carbon_get_theme_option('mje_profile_carousel_freemode') : 'true',
                     
                     
                     );
@@ -250,7 +284,7 @@ add_action('wp_head','mje_profile_carousel_set_color_by_settings',999,0);
 
 function mje_profile_carousel_set_color_by_settings()
 {
-    $color_settings=get_mjeprofile_settings();
+    $color_settings=get_mjeprofile_settings();   
     ?>
     <style>     
         .mje-list-top-wrapper
@@ -275,6 +309,15 @@ function mje_profile_carousel_set_color_by_settings()
         {
             color: <?php echo $color_settings['rating_star_color'] ;?> !important;
         }
+        .mje-next-area, .mje-prev-area
+        {            
+            background-color: <?php echo $color_settings['navigation_bg_color'] ;?> !important;
+            opacity:  <?php echo $color_settings['navigation_opacity'] ;?> !important;
+        }
+        .mje-next-area i, .mje-prev-area i
+        {
+            color: <?php echo $color_settings['navigation_text_color'] ;?> !important; 
+        }
     </style>
     <?php
 }
@@ -284,15 +327,62 @@ add_action('wp_head','mje_profile_carousel_settings',999,0);
 function mje_profile_carousel_settings()
 {
     $mjeprofile_settings=get_mjeprofile_settings();
+    if($mjeprofile_settings['carousel_navigation_style']=='classic' || $mjeprofile_settings['carousel_navigation_style']=='both')
+    {
+        $navigation_button='visible';
+    }
+    else
+    {
+        $navigation_button='hidden';
+    }
+    if($mjeprofile_settings['carousel_navigation_style']=='newstyle' || $mjeprofile_settings['carousel_navigation_style']=='both')
+    {
+        $navigation_slide_newstyle=0.2;
+    }
+    else
+    {
+        $navigation_slide_newstyle=0;
+    }
     ?>
+    <style>
+    .mje-next-area, .mje-prev-area
+    {
+        visibility: <?php echo $navigation_button; ?> !important; 
+    }
+    </style>
     <script type="text/javascript">
             var carousel_settings={ autoPlay: <?php echo $mjeprofile_settings['carousel_autoplay']; ?>,
                                     delay: <?php echo $mjeprofile_settings['carousel_delay']; ?>, 
                                     loop: <?php echo $mjeprofile_settings['carousel_loop']; ?>, 
                                     navigationStyle: '<?php echo $mjeprofile_settings['carousel_navigation_style']; ?>', 
+                                    newStyle: <?php echo $navigation_slide_newstyle; ?>,
+                                    freeMode: <?php echo $mjeprofile_settings['freeMode']; ?>, 
                                     
                                     };
             console.log(carousel_settings);   
     </script>
     <?php
 }
+
+function compareRatingScoreASC($item1,$item2)
+{
+    return $item1->rating_score - $item2->rating_score;
+   
+}
+
+function compareRatingScoreDESC($item1,$item2)
+{
+    return $item2->rating_score - $item1->rating_score;
+   
+}
+
+function compareNumberMjobASC($item1,$item2)
+{
+    return $item1->number_of_mjobs - $item2->number_of_mjobs;
+}
+
+function compareNumberMjobDESC($item1,$item2)
+{
+    return $item2->number_of_mjobs - $item1->number_of_mjobs;
+}
+

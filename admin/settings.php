@@ -13,7 +13,7 @@ function mje_profiles_list_settings()
     ->set_page_menu_position(4)
   ->add_tab( __( 'General' ), array(
    Field::make( 'text', 'mje_profile_number_of_profiles', __( 'Number of profiles to show' ) )->set_default_value(10)->set_width(30),
-   Field::make( 'select', 'mje_profile_sort_by', __( 'Sort by' ) )->set_options(array('createdDate'=>'Created date','highrating'=>'High Rating'))->set_width(30),        
+   Field::make( 'select', 'mje_profile_sort_by', __( 'Sort by' ) )->set_options(array('createdDate'=>'Created date','highrating'=>'High Rating','nummjob'=>'Number of Mjob'))->set_width(30),        
    Field::make( 'select', 'mje_profile_order', __( 'Order' ) )->set_options(array('asc'=>'Asc','desc'=>'Desc'))->set_width(30),        
     Field::make( 'radio', 'mje_profile_autoplay', __( 'Sider Autoplay' ) )
     ->set_options( array(
@@ -29,10 +29,12 @@ function mje_profiles_list_settings()
       'false' => 'no',
       
     ) )->set_width(20),
-    Field::make( 'select', 'mje_profile_carousel_navigation_style', __( 'Slider Navigation Style' ) )->set_options(array('classic'=>'Button Navigation','newstyle'=>'New Style'))->set_width(20),              
+    Field::make( 'select', 'mje_profile_carousel_navigation_style', __( 'Slider Navigation Style' ) )->set_options(array('classic'=>'Button Navigation','newstyle'=>'New Style','both'=>'Both'))->set_width(20),              
+
+    Field::make( 'radio', 'mje_profile_carousel_freemode', __( 'Fast mode' ) )->set_options(array('true'=>'Yes','false'=>'No'))->set_width(20),              
 
     Field::make( 'html', 'display_shortcode_mje_profile', __( 'Shortcode' ) )
-	->set_html('<p> <strong> Shortcode </strong> </p>[custom_profile_carousel_slider]'),
+	->set_html('<p> <strong> Shortcode </strong> </p>[custom_profile_carousel_slider] <h4><a target="_blank" href="#">Setup Document</a> </h4>'),
 
 
     )) 
@@ -51,6 +53,9 @@ function mje_profiles_list_settings()
     Field::make( 'color', 'mje_profile_rate_star_color', 'Rating Star Color' )->set_default_value('#10a2ef')->set_width(50),  
     Field::make( 'color', 'mje_profile_slide_view_profile_bg_color', 'View Profile Button Background Color' )->set_default_value('#10A2F6')->set_width(50),  
     Field::make( 'color', 'mje_profile_slide_view_profile_text_color', 'View Profile Button Text Color' )->set_default_value('#ffffff')->set_width(50),  
+    Field::make( 'color', 'mje_profile_slide_navigation_bg_color', 'Navigation Background color' )->set_default_value('#10A2F6')->set_width(30),  
+    Field::make( 'color', 'mje_profile_slide_navigation_text_color', 'Navigation Text color' )->set_default_value('#ffffff')->set_width(30),  
+    Field::make( 'text', 'mje_profile_slide_navigation_opacity', 'Navigation Opacity' )->set_attribute('placeholder','Min: 0.1 - Max: 1')->set_default_value(0.5)->set_width(30),  
 
 
        ))       
