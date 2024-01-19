@@ -34,7 +34,7 @@ function mje_profiles_list_settings()
     Field::make( 'radio', 'mje_profile_carousel_freemode', __( 'Fast mode' ) )->set_options(array('true'=>'Yes','false'=>'No'))->set_width(20),              
 
     Field::make( 'html', 'display_shortcode_mje_profile', __( 'Shortcode' ) )
-	->set_html('<p> <strong> Shortcode </strong> </p>[custom_profile_carousel_slider] <h4><a target="_blank" href="#">Setup Document</a> </h4>'),
+	->set_html('<p> <strong> Shortcode </strong> </p>[custom_profile_carousel_slider] <h4><a target="_blank" href="https://docs.enginethemes.com/article/602-how-to-use-mje-profile-list-plugin">Setup Document</a> </h4>'),
 
 
     )) 

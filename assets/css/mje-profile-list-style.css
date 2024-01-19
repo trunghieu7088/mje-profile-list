@@ -5,7 +5,7 @@
 }
 .custom-profile-list-wrapper
 {
-    
+    padding:50px 0px;
 }
 .listprofileSwiper
 {
@@ -89,7 +89,7 @@
     font-style: italic;
     color:#413b3b;
     padding:0px 20px;
-    text-align: justify;
+    text-align: left;
    /* height:100px;
     overflow-y: hidden; */
     height:4.5em;
@@ -112,8 +112,9 @@
 }
 .custom-profile-title
 {
-    margin-bottom:20px !important;
-    text-align: center !important;    
+    margin:0px 0px 50px 0px !important;
+    text-align: center !important;  
+    text-transform: uppercase;  
 }
 .mje-profile-previous-icon
 {

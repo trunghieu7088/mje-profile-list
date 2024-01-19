@@ -53,7 +53,7 @@
               },
               1024: {
                 slidesPerView: 4 + carousel_settings.newStyle,
-                spaceBetween: 1,
+                spaceBetween: 1.5,
               },
             },
     
