@@ -32,8 +32,8 @@ function mje_profiles_list_settings()
     Field::make( 'select', 'mje_profile_carousel_navigation_style', __( 'Slider Navigation Style' ) )->set_options(array('classic'=>'Button Navigation','newstyle'=>'New Style','both'=>'Both'))->set_width(20),              
 
     Field::make( 'radio', 'mje_profile_carousel_freemode', __( 'Fast mode' ) )->set_options(array('true'=>'Yes','false'=>'No'))->set_width(20),              
-    Field::make( 'html', 'display_shortcode_mje_profile', __( 'Shortcode' ) )->set_html('<p> <strong> Shortcode </strong> </p>[custom_profile_carousel_slider]')
-    ->set_html('<input type="submit" value="Save Changes" name="publish" id="publish" class="button button-primary button-large">'),
+    Field::make( 'html', 'display_shortcode_mje_profile', __( 'Shortcode' ) )->set_html('<p> <strong> Shortcode </strong> </p>[custom_profile_carousel_slider]'),
+    Field::make( 'html', 'display_button_submit_0', __( 'Shortcode' ) )->set_html('<input type="submit" value="Save Changes" name="publish" id="publish" class="button button-primary button-large">'),
     )) 
   ->add_tab( 'Replacing text', array(
     Field::make( 'text', 'mje_profile_list_title', __( 'Title of list' ) )->set_default_value('Latest Profiles'),      
@@ -43,7 +43,7 @@ function mje_profiles_list_settings()
     Field::make( 'text', 'mje_profile_null_country', __( 'None ( Text for empty country )' ) )->set_default_value('None'),    
     Field::make( 'text', 'mje_profile_null_language', __( 'None ( Text for empty language )' ) )->set_default_value('None'),    
     Field::make( 'text', 'mje_profile_view_profile_button', __( 'View Profile' ) )->set_default_value('View Profile'),    
-    Field::make( 'html', 'display_button_submit_test', __( 'Shortcode' ) )
+    Field::make( 'html', 'display_button_submit_1', __( 'Shortcode' ) )
 	->set_html('<input type="submit" value="Save Changes" name="publish" id="publish" class="button button-primary button-large">'),      
        )) 
 
@@ -57,7 +57,7 @@ function mje_profiles_list_settings()
     Field::make( 'color', 'mje_profile_slide_navigation_bg_color', 'Navigation Background color' )->set_default_value('#10A2F6')->set_width(30),  
     Field::make( 'color', 'mje_profile_slide_navigation_text_color', 'Navigation Text color' )->set_default_value('#ffffff')->set_width(30),  
     Field::make( 'text', 'mje_profile_slide_navigation_opacity', 'Navigation Opacity' )->set_attribute('placeholder','Min: 0.1 - Max: 1')->set_default_value(0.5)->set_width(30),  
-    Field::make( 'html', 'display_button_submit', __( 'Shortcode' ) )
+    Field::make( 'html', 'display_button_submit_2', __( 'Shortcode' ) )
 	->set_html('<input type="submit" value="Save Changes" name="publish" id="publish" class="button button-primary button-large">'),
     ))
 
